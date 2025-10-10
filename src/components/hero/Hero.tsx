@@ -77,7 +77,7 @@ const Hero = () => {
           <HeroVideoDialog
             className="block dark:hidden"
             animationStyle="from-center"
-            videoSrc="https://www.example.com/dummy-video"
+            videoSrc="/maldives.mp4"
             thumbnailSrc="/hero-image.png"
             thumbnailAlt="Video Thumbnail"
           />

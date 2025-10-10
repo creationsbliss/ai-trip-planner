@@ -1,3 +1,4 @@
+import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 
 const Provider = ({
@@ -8,7 +9,8 @@ const Provider = ({
   return (
     <div>
       <Header />
-      {children}
+      <main>{children}</main>
+      <Footer />
     </div>
   );
 };
