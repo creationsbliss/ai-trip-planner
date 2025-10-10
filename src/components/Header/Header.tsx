@@ -1,3 +1,4 @@
+import { SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -21,9 +22,11 @@ const Header = () => {
   return (
     <div className="flex items-center justify-between p-4">
       {/* logo */}
-      <div className="flex items-center gap-2">
-        <Image src="/logo.svg" alt="logo" width={30} height={30} />
-        <span className="text-2xl font-bold"> Ai Trip Planner </span>
+      <div>
+        <Link href={"/"} className="flex items-center gap-2">
+          <Image src="/logo.svg" alt="logo" width={30} height={30} />
+          <span className="text-2xl font-bold"> Ai Trip Planner </span>
+        </Link>
       </div>
 
       {/* nav menu */}
@@ -40,7 +43,9 @@ const Header = () => {
       </div>
 
       {/* button */}
-      <Button>Get Started</Button>
+      <SignInButton mode="modal">
+        <Button>Get Started</Button>
+      </SignInButton>
     </div>
   );
 };

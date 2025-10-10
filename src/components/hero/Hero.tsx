@@ -1,3 +1,6 @@
+"use client";
+
+import { useUser } from "@clerk/nextjs";
 import {
   ArrowDownIcon,
   Globe2Icon,
@@ -5,6 +8,7 @@ import {
   PlaneIcon,
   SendIcon,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import { HeroVideoDialog } from "../ui/hero-video-dialog";
 import { Textarea } from "../ui/textarea";
@@ -29,6 +33,18 @@ const suggestions = [
 ];
 
 const Hero = () => {
+  const { user } = useUser();
+  const router = useRouter();
+
+  const handleCreateTrip = () => {
+    if (!user) {
+      router.push("/sign-in");
+      return;
+    }
+
+    // Navigate to create trip page
+  };
+
   return (
     <div className="mt-24 flex justify-center w-full">
       {/* Content */}
@@ -49,7 +65,11 @@ const Hero = () => {
               placeholder="Create a trip for Maldives from Dhaka"
               className="border-none w-full h-28 bg-transparent focus-visible:ring-0 shadow-none resize-none"
             />
-            <Button size="icon" className="absolute bottom-6 right-6">
+            <Button
+              size="icon"
+              className="absolute bottom-6 right-6"
+              onClick={handleCreateTrip}
+            >
               <SendIcon className="h-4 w-4" />
             </Button>
           </div>
