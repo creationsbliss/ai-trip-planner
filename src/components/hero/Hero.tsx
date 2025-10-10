@@ -1,6 +1,32 @@
-import { SendIcon } from "lucide-react";
+import {
+  ArrowDownIcon,
+  Globe2Icon,
+  LandmarkIcon,
+  PlaneIcon,
+  SendIcon,
+} from "lucide-react";
 import { Button } from "../ui/button";
+import { HeroVideoDialog } from "../ui/hero-video-dialog";
 import { Textarea } from "../ui/textarea";
+
+const suggestions = [
+  {
+    title: "Create new trip",
+    icon: <Globe2Icon className="h-5 w-5 text-blue-400" />,
+  },
+  {
+    title: "Inspire me where to go",
+    icon: <PlaneIcon className="h-5 w-5 text-green-400" />,
+  },
+  {
+    title: "Discover hidded gems",
+    icon: <LandmarkIcon className="h-5 w-5 text-orange-400" />,
+  },
+  {
+    title: "Adventure destination",
+    icon: <Globe2Icon className="h-5 w-5 text-yellow-400" />,
+  },
+];
 
 const Hero = () => {
   return (
@@ -30,8 +56,32 @@ const Hero = () => {
         </div>
 
         {/* Suggetion */}
+        <div className="flex gap-5">
+          {suggestions.map((suggestion) => (
+            <div
+              key={suggestion.title}
+              className="flex items-center border rounded-full gap-2 p-2 cursor-pointer hover:bg-primary hover:text-white"
+            >
+              {suggestion.icon}
+              <span className="text-sm">{suggestion.title}</span>
+            </div>
+          ))}
+        </div>
 
         {/* Video */}
+        <div className="flex flex-col items-center">
+          <h2 className="flex gap-2 mt-14 mb-6">
+            Not sure where to start? <strong>See how it works.</strong>{" "}
+            <ArrowDownIcon />
+          </h2>
+          <HeroVideoDialog
+            className="block dark:hidden"
+            animationStyle="from-center"
+            videoSrc="https://www.example.com/dummy-video"
+            thumbnailSrc="/hero-image.png"
+            thumbnailAlt="Video Thumbnail"
+          />
+        </div>
       </div>
     </div>
   );
