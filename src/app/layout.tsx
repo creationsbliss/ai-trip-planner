@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Provider from "@/providers/Providers";
+import Provider from "@/providers/Provider";
+import { ConvexClientProvider } from "./ConvexClientProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -22,7 +23,9 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={outfit.className} suppressHydrationWarning>
-          <Provider>{children}</Provider>
+          <ConvexClientProvider>
+            <Provider>{children}</Provider>
+          </ConvexClientProvider>
         </body>
       </html>
     </ClerkProvider>
