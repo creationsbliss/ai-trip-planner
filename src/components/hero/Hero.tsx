@@ -42,7 +42,8 @@ const Hero = () => {
       return;
     }
 
-    // Navigate to create trip page
+    // Navigate to create new trip page
+    router.push("/create-new-trip");
   };
 
   return (
