@@ -13,7 +13,7 @@ import { Button } from "../ui/button";
 import { HeroVideoDialog } from "../ui/hero-video-dialog";
 import { Textarea } from "../ui/textarea";
 
-const suggestions = [
+export const suggestions = [
   {
     title: "Create new trip",
     icon: <Globe2Icon className="h-5 w-5 text-blue-400" />,
