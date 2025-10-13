@@ -5,11 +5,15 @@ import { LoaderIcon, SendIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import BudgetUi from "./BudgetUi";
 import EmptyBoxView from "./EmptyBoxView";
+import GroupSizeUi from "./GroupSizeUi";
+import SelectDays from "./SelectDay";
 
 type messagesType = {
   role: string;
   content: string;
+  ui?: string;
 };
 
 const Chatbox = () => {
@@ -36,10 +40,45 @@ const Chatbox = () => {
 
     setMessages((prev: messagesType[]) => [
       ...prev,
-      { role: "assistant", content: result?.data?.resp },
+      { role: "assistant", content: result?.data?.resp, ui: result?.data?.ui },
     ]);
 
     setIsLoading(false);
+  };
+
+  const renderGenerativeUi = (ui: string) => {
+    if (ui === "budget") {
+      // Budget ui component
+      return (
+        <BudgetUi
+          onSelectedOption={(v: string) => {
+            setUserInput(v);
+            handleCreateTrip();
+          }}
+        />
+      );
+    } else if (ui === "groupSize") {
+      // Group size component
+      return (
+        <GroupSizeUi
+          onSelectedOption={(v: string) => {
+            setUserInput(v);
+            handleCreateTrip();
+          }}
+        />
+      );
+    } else if (ui === "tripDuration") {
+      // Select day component
+      return (
+        <SelectDays
+          onSelectedOption={(v: string) => {
+            setUserInput(v);
+            handleCreateTrip();
+          }}
+        />
+      );
+    }
+    return null;
   };
 
   return (
@@ -47,7 +86,7 @@ const Chatbox = () => {
       {/* display message */}
       {messages.length === 0 && (
         <EmptyBoxView
-          onSelectOption={(v: string) => {
+          onSelectedOption={(v: string) => {
             setUserInput(v);
             handleCreateTrip();
           }}
@@ -65,6 +104,7 @@ const Chatbox = () => {
             <div key={index} className="flex justify-start mt-2">
               <div className="max-w-lg bg-muted text-black px-4 py-2 rounded-lg">
                 {message.content}
+                {renderGenerativeUi(message.ui ?? "")}
               </div>
             </div>
           ),

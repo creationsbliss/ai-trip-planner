@@ -1,6 +1,6 @@
 import { suggestions } from "@/components/hero/Hero";
 
-const EmptyBoxView = ({ onSelectOption }: any) => {
+const EmptyBoxView = ({ onSelectedOption }: any) => {
   return (
     <div className="mt-7">
       <h2 className="text-center text-xl font-semibold">
@@ -20,12 +20,12 @@ const EmptyBoxView = ({ onSelectOption }: any) => {
             tabIndex={0}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
-                onSelectOption(suggestion.title);
+                onSelectedOption(suggestion.title);
               }
             }}
             key={suggestion.title}
             className="flex items-center border rounded-xl gap-2 p-2 cursor-pointer hover:border-primary hover:text-primary"
-            onClick={() => onSelectOption(suggestion.title)}
+            onClick={() => onSelectedOption(suggestion.title)}
           >
             {suggestion.icon}
             <span className="text-sm">{suggestion.title}</span>
