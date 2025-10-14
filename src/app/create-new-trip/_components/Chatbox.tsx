@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import BudgetUi from "./BudgetUi";
 import EmptyBoxView from "./EmptyBoxView";
+import FinalUi from "./FinalUi";
 import GroupSizeUi from "./GroupSizeUi";
 import SelectDays from "./SelectDay";
 
@@ -77,6 +78,9 @@ const Chatbox = () => {
           }}
         />
       );
+    } else if (ui === "final") {
+      // Final ui component
+      return <FinalUi viewTrip={() => console.log()} />;
     }
     return null;
   };
